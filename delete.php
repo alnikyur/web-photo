@@ -1,6 +1,6 @@
 <?php
 
-echo $_GET['delete'];
+//echo $_GET['delete'];
 
 $img_name = $_GET['delete'];
 $tmp_name = 'tmp';

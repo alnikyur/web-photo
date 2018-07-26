@@ -22,10 +22,7 @@ $img_src = $_POST['img_src'];
 //$uploaddir = "./dirs/$img_src/";
 $uploaddir = 'images/';
 
-$tmp_name =  $_FILES['files']['tmp_name'];
-echo $tmp_name;
-
-$uploadfile = $uploaddir . basename($_FILES['files']['tmp_name']);
+$uploadfile = $uploaddir . basename($_FILES['files']['name']);
 
 move_uploaded_file($_FILES['files']['tmp_name'], $uploadfile);
 rename();

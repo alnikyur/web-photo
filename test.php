@@ -30,13 +30,13 @@ echo "Количество элементов в массиве $count";
 </div>
 
 <div align="center">
-    <h1>Создать директорию</h1>
+    <h1>Загрузить файл</h1>
 <form action="upload.php" enctype="multipart/form-data" method="POST">
-    <select name="img_src" size="1">
-        <?php for($i = 2; $i < $count; $i++) { ?>
-            <option value="<?php  echo($dirs[$i]); ?>"><?php echo($dirs[$i]); ?></option>
-        <?php } ?>
-    </select>
+<!--    <select name="img_src" size="1">-->
+<!--        --><?php //for($i = 2; $i < $count; $i++) { ?>
+<!--            <option value="--><?php // echo($dirs[$i]); ?><!--">--><?php //echo($dirs[$i]); ?><!--</option>-->
+<!--        --><?php //} ?>
+<!--    </select>-->
     <input type="file" name="files">
     <input type="submit">
 </form>
@@ -68,7 +68,7 @@ function show ($path) {
 }
 
 
-show('./images');
+//show('./images');
 
 
 //scandir('./images');
@@ -94,26 +94,27 @@ show('./images');
     }*/
 
     div {
-        border: 1px solid #fff;
+        border: 2px solid lightgray;
         margin:10px;
         text-align: center;
     }
     #main{
-        width: 1119px;
-        height: 150px;
+        width: 1500px;
+        height: 700px;
         overflow: hidden;
     }
     #main>div{
-        width: 150px;
-        height: 120px;
+        width: 200px;
+        height: 200px;
         display: inline-block;
     }
+
 </style>
 <form action="query.php" method="GET">
 <div id="main">
-<?php for ($img = 2; $img < 10; $img++) {
+<?php for ($img = 2; $img < $count; $img++) {
     echo "
-<div><img src=./images/$dirs[$img] width='50' height='50'><br>
+<div><img src=./images/$dirs[$img] width='200' height='200'><br>
 <input type='hidden' name='delete' value=$dirs[$img]>
 <input type='submit' value='Delete'>
 </div>";
@@ -121,3 +122,4 @@ show('./images');
 }?>
 </div>
 </form>
+
