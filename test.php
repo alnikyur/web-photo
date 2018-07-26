@@ -1,12 +1,16 @@
 <?php
 
-require_once './config.php';
+///require_once './config.php';
 
 $dirs = scandir('./images');
 $count = count($dirs);
 
 echo "Количество элементов в массиве $count";
 ?>
+
+<html>
+<head></head>
+<body>
 <form action="show.php" method="post">
 <select name="drop_down" size="1">
     <?php for($i = 2; $i < $count; $i++) { ?>
@@ -16,12 +20,16 @@ echo "Количество элементов в массиве $count";
 </select>
 </form>
 
+<div align="center">
+    <h1>Создать директорию</h1>
 <form action="create.php" method="POST">
     <input type="text" name="create">
     <input type="submit" value="Create directory">
 </form>
+</div>
 
-
+<div align="center">
+    <h1>Создать директорию</h1>
 <form action="upload.php" enctype="multipart/form-data" method="POST">
     <select name="img_src" size="1">
         <?php for($i = 2; $i < $count; $i++) { ?>
@@ -31,6 +39,9 @@ echo "Количество элементов в массиве $count";
     <input type="file" name="files">
     <input type="submit">
 </form>
+</div>
+</body>
+</html>
 
 <?php
 
@@ -42,14 +53,22 @@ echo "Количество элементов в массиве $count";
 //    copy("$file", "$dst/$path_new_dir/index.php");
 //}
 
-//function show ($path) {
-//    $show = scandir("$path");
-//    foreach ( $show as $item) {
-//        if ($item != '.' and $item != '..') {
-//            echo "<br><a href='$item/index.php'>$item</a>";
-//        }
-//    }
-//}
-//create_dir();
-//show('dirs');
+function show ($path) {
+    $show = scandir("$path");
+    foreach ( $show as $item) {
+        if ($item != '.' AND $item != '..' AND is_file("./images/$item")) {
+            echo "
+            <form action='delete.php' method='GET'>
+            <input type='hidden' name='delete' value=$item>
+            <input type='submit' value='Delete'>
+            <img src=./images/$item width='50' height='50'>
+            </form>";
+        }
+    }
+}
+show('./images');
+
+
+//echo scandir('./images');
+
 
