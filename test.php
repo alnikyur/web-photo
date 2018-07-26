@@ -1,11 +1,3 @@
-#liniya {
-width:110px;
-height:50px;
-background:#669900;
-float:left;
-margin-left:15px;
-text-align:center;
-}
 
 <?php
 
@@ -74,14 +66,58 @@ function show ($path) {
         }
     }
 }
-//show('./images');
 
 
-//echo scandir('./images');
+show('./images');
 
-for ($img = 2; $img < 10; $img++) {
+
+//scandir('./images');
+
+//for ($img = 2; $img < 10; $img++) {
+//    echo "
+//<div><img src=./images/$dirs[$img] width='50' height='50'></div>";
+//
+//}
+
+?>
+
+<style>
+/*    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    html, body{
+        height: 100%;
+    }
+    body{
+        background-color: #ccc;
+    }*/
+
+    div {
+        border: 1px solid #fff;
+        margin:10px;
+        text-align: center;
+    }
+    #main{
+        width: 1119px;
+        height: 150px;
+        overflow: hidden;
+    }
+    #main>div{
+        width: 150px;
+        height: 120px;
+        display: inline-block;
+    }
+</style>
+<form action="query.php" method="GET">
+<div id="main">
+<?php for ($img = 2; $img < 10; $img++) {
     echo "
-<div id=liniya align='center'><img src=./images/$dirs[$img] width='50' height='50'>
-<a href='#'>Link</a></div>";
+<div><img src=./images/$dirs[$img] width='50' height='50'><br>
+<input type='hidden' name='delete' value=$dirs[$img]>
+<input type='submit' value='Delete'>
+</div>";
 
-}
+}?>
+</div>
+</form>
