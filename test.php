@@ -1,3 +1,12 @@
+#liniya {
+width:110px;
+height:50px;
+background:#669900;
+float:left;
+margin-left:15px;
+text-align:center;
+}
+
 <?php
 
 ///require_once './config.php';
@@ -57,18 +66,22 @@ function show ($path) {
     $show = scandir("$path");
     foreach ( $show as $item) {
         if ($item != '.' AND $item != '..' AND is_file("./images/$item")) {
-            echo "
+            echo "<img src=./images/$item width='50' height='50'>
             <form action='delete.php' method='GET'>
             <input type='hidden' name='delete' value=$item>
             <input type='submit' value='Delete'>
-            <img src=./images/$item width='50' height='50'>
             </form>";
         }
     }
 }
-show('./images');
+//show('./images');
 
 
 //echo scandir('./images');
 
+for ($img = 2; $img < 10; $img++) {
+    echo "
+<div id=liniya align='center'><img src=./images/$dirs[$img] width='50' height='50'>
+<a href='#'>Link</a></div>";
 
+}
