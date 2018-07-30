@@ -12,6 +12,9 @@ echo "Количество элементов в массиве $count";
 <html>
 <head></head>
 <body>
+
+<a href="show_trash.php">Show deleted images</a>
+
 <form action="show.php" method="post">
 <select name="drop_down" size="1">
     <?php for($i = 2; $i < $count; $i++) { ?>
