@@ -5,24 +5,25 @@
 
 $dirs = scandir('./images');
 $count = count($dirs);
-
-echo "Количество элементов в массиве $count";
 ?>
 
 <html>
 <head></head>
 <body>
 
+<form action="show_trash.php">
+    <input type="submit" value="Показать удаленные файлы">
+</form>
 <a href="show_trash.php">Show deleted images</a>
 
-<form action="show.php" method="post">
-<select name="drop_down" size="1">
-    <?php for($i = 2; $i < $count; $i++) { ?>
-        <option value="<?php  echo($dirs[$i]); ?>"><?php echo($dirs[$i]); ?></option>
-    <?php } ?>
-    <input type="submit" value="Delete dir">
-</select>
-</form>
+<!--<form action="show.php" method="post">-->
+<!--<select name="drop_down" size="1">-->
+<!--    --><?php //for($i = 2; $i < $count; $i++) { ?>
+<!--        <option value="--><?php // echo($dirs[$i]); ?><!--">--><?php //echo($dirs[$i]); ?><!--</option>-->
+<!--    --><?php //} ?>
+<!--    <input type="submit" value="Delete dir">-->
+<!--</select>-->
+<!--</form>-->
 
 <div align="center">
     <h1>Создать директорию</h1>
@@ -40,7 +41,7 @@ echo "Количество элементов в массиве $count";
 <!--            <option value="--><?php // echo($dirs[$i]); ?><!--">--><?php //echo($dirs[$i]); ?><!--</option>-->
 <!--        --><?php //} ?>
 <!--    </select>-->
-    <input type="file" name="files">
+    <input type="file" name="files" accept="image/gif,image/jpeg,image/jpg,image/png">
     <input type="submit">
 </form>
 </div>
@@ -97,9 +98,10 @@ function show ($path) {
     }*/
 
     div {
-        border: 2px solid lightgray;
+        border: 1px solid lightgray;
         margin:10px;
         text-align: center;
+        align-content: center;
     }
     #main{
         width: 1500px;

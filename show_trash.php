@@ -6,7 +6,14 @@ $count = count($dirs);
 
 ?>
 
-<a href="test.php">To main page</a>
+<form action="test.php">
+    <input type="submit" value="На главную">
+</form>
+
+<form action="clear_trasg.php" method="GET">
+    <input type="hidden" name="delete_all">
+    <input type="submit" value="Очистить корзину">
+</form>
 
 <style>
     /*    *{
@@ -37,7 +44,7 @@ $count = count($dirs);
     }
 
 </style>
-<form action="query.php" method="GET">
+<form action="clear_trasg.php" method="GET">
     <div id="main">
         <?php for ($img = 2; $img < $count; $img++) {
             echo "
