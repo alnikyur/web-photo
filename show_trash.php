@@ -10,7 +10,7 @@ $count = count($dirs);
     <input type="submit" value="На главную">
 </form>
 
-<form action="clear_trasg.php" method="GET">
+<form action="clear_trash.php" method="GET">
     <input type="hidden" name="delete_all">
     <input type="submit" value="Очистить корзину">
 </form>

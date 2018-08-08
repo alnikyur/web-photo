@@ -1,9 +1,5 @@
 <?php
 
-$query = $_GET['delete'];
+require_once 'functions.php';
 
-echo $query;
-
-rename("./images/$query", "./trash/$query");
-
-header( "refresh:1;url=test.php" );
+deleteToTrash($_GET['delete'], true);

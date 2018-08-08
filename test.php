@@ -14,7 +14,6 @@ $count = count($dirs);
 <form action="show_trash.php">
     <input type="submit" value="Показать удаленные файлы">
 </form>
-<a href="show_trash.php">Show deleted images</a>
 
 <!--<form action="show.php" method="post">-->
 <!--<select name="drop_down" size="1">-->
@@ -41,7 +40,7 @@ $count = count($dirs);
 <!--            <option value="--><?php // echo($dirs[$i]); ?><!--">--><?php //echo($dirs[$i]); ?><!--</option>-->
 <!--        --><?php //} ?>
 <!--    </select>-->
-    <input type="file" name="files" accept="image/gif,image/jpeg,image/jpg,image/png">
+    <input type="file" name="files" accept="image/gif,image/jpeg,image/jpg,image/png" multiple>
     <input type="submit">
 </form>
 </div>
@@ -98,7 +97,7 @@ function show ($path) {
     }*/
 
     div {
-        border: 1px solid lightgray;
+        /*border: 1px solid lightgray;*/
         margin:10px;
         text-align: center;
         align-content: center;
