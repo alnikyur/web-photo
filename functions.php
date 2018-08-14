@@ -12,11 +12,19 @@ function uploadFiles ($uploaddir, $filetmpname, $refresh) {
     }
 }
 
-function multipleUploadFiles ($uploaddir, $filetmpname, $refresh) {
-    for ($i = 0; $i <= count($_FILES['files']['name']); $i++) {
-        $unique_file_name =  md5_file($filetmpname);
-        $uploadfile = $uploaddir.$unique_file_name.'.png';
-        move_uploaded_file($filetmpname, $uploadfile);
+/**
+ * Upload multiple files
+ *
+ * @param string $uploaddir    Dir to upload files
+ * @param array $tmp_file      Array from $_FILES['name']['tmp_name']
+ * @param bool $refresh        If set in true - refresh page in 1 second
+ *                             otherwise - without refresh.
+ */
+function multipleUploadFiles ($uploaddir, $tmp_file, $refresh=true) {
+    for ($i=0; $i<=count($_FILES['files']['name']); $i++) {
+        $unique_file_name =  md5_file($tmp_file[$i]);
+        $uploadFile = $uploaddir.$unique_file_name.'.jpg';
+        copy($_FILES['files']['tmp_name'][$i], $uploadFile);
     }
     if ($refresh == true) {
         header( "refresh:1;url=test.php" );
