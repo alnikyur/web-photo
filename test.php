@@ -1,7 +1,10 @@
 
 <?php
 
-///require_once './config.php';
+require_once 'lib/Twig/Autoloader.php';
+Twig_Autoloader::register();
+$loader = new Twig_Loader_Filesystem('templates');
+
 
 $dirs = scandir('./images');
 $count = count($dirs);
@@ -24,13 +27,13 @@ $count = count($dirs);
 <!--</select>-->
 <!--</form>-->
 
-<div align="center">
+<!--<div align="center">
     <h1>Создать директорию</h1>
 <form action="create.php" method="POST">
     <input type="text" name="create">
-    <input type="submit" value="Create directory">
+    <input type="submit" value="Создать каталог">
 </form>
-</div>
+</div>-->
 
 <div align="center">
     <h1>Загрузить файл</h1>
@@ -40,8 +43,8 @@ $count = count($dirs);
 <!--            <option value="--><?php // echo($dirs[$i]); ?><!--">--><?php //echo($dirs[$i]); ?><!--</option>-->
 <!--        --><?php //} ?>
 <!--    </select>-->
-    <input type="file" name="files" accept="image/gif,image/jpeg,image/jpg,image/png" multiple>
-    <input type="submit">
+    <input type="file" name="files[]" accept="image/gif,image/jpeg,image/jpg,image/png" multiple>
+    <input type="submit" value="Загрузить">
 </form>
 </div>
 </body>
@@ -62,7 +65,7 @@ function show ($path) {
     foreach ( $show as $item) {
         if ($item != '.' AND $item != '..' AND is_file("./images/$item")) {
             echo "<img src=./images/$item width='50' height='50'>
-            <form action='delete.php' method='GET'>
+            <form action='delete.php' method='POST'>
             <input type='hidden' name='delete' value=$item>
             <input type='submit' value='Delete'>
             </form>";
@@ -112,9 +115,15 @@ function show ($path) {
         height: 200px;
         display: inline-block;
     }
+    /*input[type="submit"] {*/
+        /*border: 0;*/
+        /*background: url('icons/btn.png') no-repeat center top;*/
+        /*width: 120px;*/
+        /*height: 35px;*/
+    /*}*/
 
 </style>
-<form action="query.php" method="GET">
+<form action="query.php" method="POST">
 <div id="main">
 <?php for ($img = 2; $img < $count; $img++) {
     echo "

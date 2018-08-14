@@ -2,4 +2,4 @@
 
 require_once 'functions.php';
 
-deleteToTrash($_GET['delete'], true);
+deleteToTrash($_POST['delete'], true);

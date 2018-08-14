@@ -44,7 +44,7 @@ $count = count($dirs);
     }
 
 </style>
-<form action="clear_trasg.php" method="GET">
+<form action="clear_trash.php" method="GET">
     <div id="main">
         <?php for ($img = 2; $img < $count; $img++) {
             echo "

@@ -1,8 +1,6 @@
 <?php
 
-//echo $_GET['delete'];
-
-$img_name = $_GET['delete'];
+$img_name = $_POST['delete'];
 $tmp_name = 'tmp';
 
 $src = './images';

@@ -1,5 +1,8 @@
 <?php
 
+/*
+ *Upload file
+ */
 function uploadFiles ($uploaddir, $filetmpname, $refresh) {
     $unique_file_name =  md5_file($filetmpname);
     $uploadfile = $uploaddir.$unique_file_name.'.png';
@@ -9,6 +12,20 @@ function uploadFiles ($uploaddir, $filetmpname, $refresh) {
     }
 }
 
+function multipleUploadFiles ($uploaddir, $filetmpname, $refresh) {
+    for ($i = 0; $i <= count($_FILES['files']['name']); $i++) {
+        $unique_file_name =  md5_file($filetmpname);
+        $uploadfile = $uploaddir.$unique_file_name.'.png';
+        move_uploaded_file($filetmpname, $uploadfile);
+    }
+    if ($refresh == true) {
+        header( "refresh:1;url=test.php" );
+    }
+}
+
+/*
+ *Create directory
+ */
 function createDir ($dirname) {
     if (!file_exists('images')) {
         mkdir('images');
@@ -16,15 +33,22 @@ function createDir ($dirname) {
     mkdir("images/$dirname");
 }
 
+/*
+ *Show files in trash
+ */
 function showTrash () {
     $dirs = scandir('./trash');
-    $path = './trash';
-    $count = count($dirs);
-    for ($img = 2; $img < $count; $img++) {
-        echo $dirs[$img];
+    foreach ($dirs as $item) {
+        if ($item != '.' AND $item != '..') {
+            $result[] = $item;
+        }
     }
+    return json_encode($result);
 }
 
+/*
+ *Delete files to trash
+ */
 function deleteToTrash ($filename, $refresh) {
     rename("./images/$filename", "./trash/$filename");
     if ($refresh == true) {
@@ -32,6 +56,9 @@ function deleteToTrash ($filename, $refresh) {
     }
 }
 
+/*
+ *Delete files from trash (not recoverable)
+ */
 function clearTrash ($all_delete, $sing_delete, $trashpath, $refresh) {
     if (isset($sing_delete)) {
         unlink($trashpath.$sing_delete);
