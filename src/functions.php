@@ -3,9 +3,8 @@
 /*
  *Upload file
  */
-function uploadFiles ($uploaddir, $filetmpname, $refresh) {
-    $unique_file_name =  md5_file($filetmpname);
-    $uploadfile = $uploaddir.$unique_file_name.'.png';
+function uploadFiles ($uploaddir, $filetmpname, $refresh = true) {
+    $uploadfile = $uploaddir.basename($_FILES['files']['name']);
     move_uploaded_file($filetmpname, $uploadfile);
     if ($refresh == true) {
         header( "refresh:1;url=test.php" );
@@ -15,12 +14,12 @@ function uploadFiles ($uploaddir, $filetmpname, $refresh) {
 /**
  * Upload multiple files
  *
- * @param string $uploaddir    Dir to upload files
+ * @param string $uploaddir    Dir to upload files with trailing slash
  * @param array $tmp_file      Array from $_FILES['name']['tmp_name']
  * @param bool $refresh        If set in true - refresh page in 1 second
  *                             otherwise - without refresh.
  */
-function multipleUploadFiles ($uploaddir, $tmp_file, $refresh=true) {
+function multipleUploadFiles ($uploaddir, $tmp_file, $refresh = true) {
     for ($i=0; $i<=count($_FILES['files']['name']); $i++) {
         $unique_file_name =  md5_file($tmp_file[$i]);
         $uploadFile = $uploaddir.$unique_file_name.'.jpg';
@@ -57,7 +56,7 @@ function showTrash () {
 /*
  *Delete files to trash
  */
-function deleteToTrash ($filename, $refresh) {
+function deleteToTrash ($filename, $refresh = true) {
     rename("./images/$filename", "./trash/$filename");
     if ($refresh == true) {
         header( "refresh:1;url=test.php" );
@@ -67,7 +66,7 @@ function deleteToTrash ($filename, $refresh) {
 /*
  *Delete files from trash (not recoverable)
  */
-function clearTrash ($all_delete, $sing_delete, $trashpath, $refresh) {
+function clearTrash ($all_delete, $sing_delete, $trashpath, $refresh = true) {
     if (isset($sing_delete)) {
         unlink($trashpath.$sing_delete);
     }
